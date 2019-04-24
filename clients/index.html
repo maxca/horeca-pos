@@ -172,7 +172,7 @@
         var channel = pusher.subscribe('my-channel');
         channel.bind('my-event', function (data) {
             alert(JSON.stringify(data));
-            sendToQuickPrinter();
+            console.log(sendToQuickPrinter());
            var text = sendToQuickPrinterChrome();
            console.log(text)
             printf(text);
@@ -196,7 +196,7 @@
         function sendToQuickPrinter() {
             var text = "test printer<br><big>Big title<br><cut>";
             var textEncoded = encodeURI(commandsToPrint);
-            window.location.href = "quickprinter://" + text;
+            window.location.href = "quickprinter://test";
             window.location.href = "quickprinter://" + textEncoded;
         }
 
