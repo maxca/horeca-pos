@@ -172,7 +172,8 @@
         var channel = pusher.subscribe('my-channel');
         channel.bind('my-event', function (data) {
             //alert(JSON.stringify(data));
-            window.location.href = "http://printer.siam-dev.info/clients/printer.php";
+            //window.location.href = "http://printer.siam-dev.info/clients/printer.php";
+            window.open("http://printer.siam-dev.info/clients/printer.php");
 
 
         });
