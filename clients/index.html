@@ -170,10 +170,13 @@
         });
 
         var channel = pusher.subscribe('my-channel');
+
         channel.bind('my-event', function (data) {
+            var date = new Date();
+            var timestamp = date.getTime();
             //alert(JSON.stringify(data));
             //window.location.href = "http://printer.siam-dev.info/clients/printer.php";
-            window.open("http://printer.siam-dev.info/clients/printer.php");
+            window.open("http://printer.siam-dev.info/clients/printer.php?time=" + timestamp);
 
 
         });
