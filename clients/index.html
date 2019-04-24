@@ -172,12 +172,12 @@
 
         var channel = pusher.subscribe('my-channel');
         channel.bind('my-event', function (data) {
-            alert(JSON.stringify(data));
+            // alert(JSON.stringify(data));
             testPrint();
             console.log(sendToQuickPrinter());
-           var text = sendToQuickPrinterChrome();
-           console.log(text)
-            printf(text);
+           // var text = sendToQuickPrinterChrome();
+           // console.log(text)
+           //  printf(text);
 
 
         });
