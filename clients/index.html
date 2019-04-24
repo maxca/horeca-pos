@@ -173,6 +173,7 @@
         var channel = pusher.subscribe('my-channel');
         channel.bind('my-event', function (data) {
             alert(JSON.stringify(data));
+            testPrint();
             console.log(sendToQuickPrinter());
            var text = sendToQuickPrinterChrome();
            console.log(text)
@@ -211,7 +212,9 @@
             return "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
 
         }
-
+        function testPrint() {
+            window.location.href = 'http://printer.siam-dev.info/clients/print.php';
+        }
 
         function printf(contents) {
             $('#oauth').attr('href', contents);
@@ -220,6 +223,8 @@
         }
 
     });
+
+
 
 </script>
 </body>
