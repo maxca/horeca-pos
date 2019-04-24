@@ -131,6 +131,7 @@
     </div>
 </div>
 </div>
+<a id="oauth" href="">Link</a>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -145,50 +146,62 @@
         crossorigin="anonymous"></script>
 
 <script>
+    $(document).ready(function() {
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
 
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+        var pusher = new Pusher('04ac9fe180086d993988', {
+            cluster: 'ap1',
+            forceTLS: true
+        });
 
-    var pusher = new Pusher('04ac9fe180086d993988', {
-        cluster: 'ap1',
-        forceTLS: true
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function (data) {
+            alert(JSON.stringify(data));
+            sendToQuickPrinterChrome();
+            alert('print');
+            document.getElementById('btn-click').click();
+            printf(sendToQuickPrinterChrome());
+
+        });
+
+        var commandsToPrint =
+            "<LOGO>" +
+            "<BIG><BOLD><CENTER> Horeca POS <BR>\n" +
+            "<CENTER>Egg digital company<BR>\n" +
+            "<CENTER>0996217524<BR>\n" +
+            "<BOLD>Quantity     Product    Subtotal<BR>\n" +
+            "<LEFT>2            ชากาแฟ        5 THB<BR>\n" +
+            "<RIGHT><BOLD>Total $ 5.00<BR>\n" +
+            "<BR>\n" +
+            "<CUT>\n" +
+            "<DRAWER>\n" // OPEN THE CASH DRAWER
+        ;
+
+        function sendToQuickPrinter() {
+            var text = "test printer<br><big>Big title<br><cut>";
+            var textEncoded = encodeURI(commandsToPrint);
+            window.location.href = "quickprinter://" + textEncoded;
+        }
+
+        //if you are using latest version of chrome browser I recommend to use:
+        function sendToQuickPrinterChrome() {
+
+            var text = "test printer<br><big>Big title<br><cut>";
+            var textEncoded = encodeURI(commandsToPrint);
+            window.location.href = "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
+            alert('ok print');
+            return "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
+
+
+        }
+
+        function printf(contents) {
+            $('#oauth').attr('href',contents);
+            $('#oauth').click();
+            alert('contents');
+        }
     });
-
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-        alert(JSON.stringify(data));
-        sendToQuickPrinter();
-        alert('print');
-        document.getElementById('btn-click').click();
-
-    });
-
-    var commandsToPrint =
-        "<LOGO>" +
-        "<BIG><BOLD><CENTER> Horeca POS <BR>\n" +
-        "<CENTER>Egg digital company<BR>\n" +
-        "<CENTER>0996217524<BR>\n" +
-        "<BOLD>Quantity     Product    Subtotal<BR>\n" +
-        "<LEFT>2            ชากาแฟ        5 THB<BR>\n" +
-        "<RIGHT><BOLD>Total $ 5.00<BR>\n" +
-        "<BR>\n" +
-        "<CUT>\n" +
-        "<DRAWER>\n" // OPEN THE CASH DRAWER
-    ;
-    function sendToQuickPrinter(){
-        var text = "test printer<br><big>Big title<br><cut>";
-        var textEncoded = encodeURI(commandsToPrint);
-        window.location.href="quickprinter://"+textEncoded;
-    }
-
-    //if you are using latest version of chrome browser I recommend to use:
-    function sendToQuickPrinterChrome(){
-        alert('ok');
-        var text = "test printer<br><big>Big title<br><cut>";
-        var textEncoded = encodeURI(commandsToPrint);
-        window.location.href="intent://"+textEncoded+"#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
-
-    }
 </script>
 </body>
 </html>
