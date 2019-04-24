@@ -215,7 +215,7 @@
         function printf(contents) {
             alert(contents);
             $('#oauth').attr('href', contents);
-            $('#oauth').click();
+            $( location ).attr("href", contents);
 
         }
 
