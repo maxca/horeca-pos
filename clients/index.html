@@ -172,6 +172,7 @@
         var channel = pusher.subscribe('my-channel');
         channel.bind('my-event', function (data) {
             alert(JSON.stringify(data));
+            sendToQuickPrinter();
             sendToQuickPrinterChrome();
             alert('print');
             document.getElementById('btn-click').click();
@@ -195,6 +196,7 @@
         function sendToQuickPrinter() {
             var text = "test printer<br><big>Big title<br><cut>";
             var textEncoded = encodeURI(commandsToPrint);
+            window.location.href = "quickprinter://" + text;
             window.location.href = "quickprinter://" + textEncoded;
         }
 
@@ -204,7 +206,7 @@
             var text = "test printer<br><big>Big title<br><cut>";
             var textEncoded = encodeURI(commandsToPrint);
             window.location.href = "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
-            
+
             return "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
 
 
