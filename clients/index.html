@@ -158,6 +158,7 @@
     channel.bind('my-event', function(data) {
         alert(JSON.stringify(data));
         sendToQuickPrinterChrome();
+        alert('print');
     });
 
     var commandsToPrint =
@@ -181,6 +182,7 @@
 
     //if you are using latest version of chrome browser I recommend to use:
     function sendToQuickPrinterChrome(){
+        alert('ok');
         var text = "test printer<br><big>Big title<br><cut>";
         var textEncoded = encodeURI(commandsToPrint);
         window.location.href="intent://"+textEncoded+"#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
