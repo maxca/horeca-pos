@@ -204,16 +204,17 @@
             var text = "test printer<br><big>Big title<br><cut>";
             var textEncoded = encodeURI(commandsToPrint);
             window.location.href = "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
-            alert('ok print');
+            
             return "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
 
 
         }
 
         function printf(contents) {
+            alert(contents);
             $('#oauth').attr('href', contents);
             $('#oauth').click();
-            alert('contents');
+
         }
 
     });
