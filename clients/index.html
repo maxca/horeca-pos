@@ -160,8 +160,7 @@
         crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        sendToQuickPrinterChrome();
+
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
 
@@ -172,13 +171,8 @@
 
         var channel = pusher.subscribe('my-channel');
         channel.bind('my-event', function (data) {
-            // alert(JSON.stringify(data));
-            window.location.href = "http://www.google.com";
-            testPrint();
-            console.log(sendToQuickPrinter());
-           // var text = sendToQuickPrinterChrome();
-           // console.log(text)
-           //  printf(text);
+            alert(JSON.stringify(data));
+            window.location.href = "https://www.google.co.th";
 
 
         });
@@ -199,7 +193,7 @@
         function sendToQuickPrinter() {
             var text = "test printer<br><big>Big title<br><cut>";
             var textEncoded = encodeURI(commandsToPrint);
-            window.location.href = "quickprinter://test";
+            window.location.href = "quickprinter://" + text;
             window.location.href = "quickprinter://" + textEncoded;
         }
 
@@ -212,19 +206,15 @@
 
             return "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
 
+
         }
-        function testPrint() {
-            window.location.href = 'http://printer.siam-dev.info/clients/print.php';
-        }
+
 
         function printf(contents) {
             $('#oauth').attr('href', contents);
             $( location ).attr("href", contents);
 
         }
-
-    });
-
 
 
 </script>
