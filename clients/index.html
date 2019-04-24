@@ -14,10 +14,12 @@
             margin-top: 20px;
             margin-bottom: 20px;
         }
-        .col{
+
+        .col {
             margin-top: 10px;
         }
-        .card-header{
+
+        .card-header {
             background-color: #49D216;
         }
     </style>
@@ -38,7 +40,9 @@
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 </div>
             </div>
-            <button type="button" id="btn-click" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block">Print</button>
+            <button type="button" id="btn-click" onclick="sendToQuickPrinterChrome();"
+                    class="btn btn-primary btn-lg btn-block">Print
+            </button>
         </div>
         <div class="col">
             <div class="card">
@@ -50,7 +54,8 @@
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 </div>
             </div>
-            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block">Print</button>
+            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block">Print
+            </button>
         </div>
         <div class="col">
             <div class="card">
@@ -62,7 +67,8 @@
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 </div>
             </div>
-            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block">Print</button>
+            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block">Print
+            </button>
         </div>
         <div class="col">
             <div class="card">
@@ -74,7 +80,8 @@
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 </div>
             </div>
-            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block">Print</button>
+            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block">Print
+            </button>
         </div>
     </div>
 
@@ -90,7 +97,8 @@
                 </div>
             </div>
 
-            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block">Print</button>
+            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block">Print
+            </button>
         </div>
         <div class="col">
             <div class="card">
@@ -102,7 +110,9 @@
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 </div>
             </div>
-            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block" disabled>Print</button>
+            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block"
+                    disabled>Print
+            </button>
         </div>
         <div class="col">
             <div class="card">
@@ -114,7 +124,9 @@
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 </div>
             </div>
-            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block" disabled>Print</button>
+            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block"
+                    disabled>Print
+            </button>
         </div>
         <div class="col">
             <div class="card">
@@ -126,7 +138,9 @@
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 </div>
             </div>
-            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block" disabled>Print</button>
+            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block"
+                    disabled>Print
+            </button>
         </div>
     </div>
 </div>
@@ -145,8 +159,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-<script>
-
+<script type="text/javascript">
+    $(document).ready(function () {
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
 
@@ -197,11 +211,13 @@
         }
 
         function printf(contents) {
-            $('#oauth').attr('href',contents);
+            $('#oauth').attr('href', contents);
             $('#oauth').click();
             alert('contents');
         }
-    
+
+    });
+
 </script>
 </body>
 </html>
