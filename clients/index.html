@@ -173,12 +173,10 @@
         channel.bind('my-event', function (data) {
             alert(JSON.stringify(data));
             sendToQuickPrinter();
-            sendToQuickPrinterChrome();
+           var text = sendToQuickPrinterChrome();
+           console.log(text)
+            printf(text);
 
-            printf(sendToQuickPrinterChrome());
-            if(confirm('print')) {
-                sendToQuickPrinterChrome();
-            }
 
         });
 
@@ -210,7 +208,6 @@
             window.location.href = "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
 
             return "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
-
 
         }
 
