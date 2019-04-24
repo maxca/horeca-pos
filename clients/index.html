@@ -159,6 +159,7 @@
         alert(JSON.stringify(data));
         sendToQuickPrinterChrome();
         alert('print');
+        window.location.href= "https://www.google.com";
     });
 
     var commandsToPrint =
@@ -174,7 +175,6 @@
         "<DRAWER>\n" // OPEN THE CASH DRAWER
     ;
     function sendToQuickPrinter(){
-
         var text = "test printer<br><big>Big title<br><cut>";
         var textEncoded = encodeURI(commandsToPrint);
         window.location.href="quickprinter://"+textEncoded;
