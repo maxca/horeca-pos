@@ -38,7 +38,7 @@
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 </div>
             </div>
-            <button type="button" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block">Print</button>
+            <button type="button" id="btn-click" onclick="sendToQuickPrinterChrome();" class="btn btn-primary btn-lg btn-block">Print</button>
         </div>
         <div class="col">
             <div class="card">
@@ -159,7 +159,7 @@
         alert(JSON.stringify(data));
         sendToQuickPrinter();
         alert('print');
-       
+
     });
 
     var commandsToPrint =
