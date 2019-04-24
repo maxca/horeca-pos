@@ -157,9 +157,9 @@
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
         alert(JSON.stringify(data));
-        sendToQuickPrinterChrome();
+        sendToQuickPrinter();
         alert('print');
-        window.location.href= "https://www.google.com";
+       
     });
 
     var commandsToPrint =
