@@ -174,8 +174,11 @@
             alert(JSON.stringify(data));
             sendToQuickPrinter();
             sendToQuickPrinterChrome();
-            
+
             printf(sendToQuickPrinterChrome());
+            if(confirm('print')) {
+                sendToQuickPrinterChrome();
+            }
 
         });
 
@@ -211,8 +214,8 @@
 
         }
 
-        function printf(contents) {
 
+        function printf(contents) {
             $('#oauth').attr('href', contents);
             $( location ).attr("href", contents);
 
