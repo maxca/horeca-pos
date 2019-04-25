@@ -174,7 +174,7 @@
         channel.bind('order-trigger', function (data) {
             var date = new Date();
             var timestamp = date.getTime();
-            window.open('quickprinter://test')
+            window.open('intent://test#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;')
             //alert(JSON.stringify(data));
             // window.location.href = "http://printer.siam-dev.info/clients/printer.php";
             $("#btn-click").trigger('click');
