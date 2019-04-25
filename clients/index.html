@@ -223,10 +223,9 @@
             alert('if')
             el.fireEvent('on' + etype);
         } else {
-            alert('else')
             var evObj = document.createEvent('Events');
             evObj.initEvent(etype, true, false);
-            alert(el.dispatchEvent(evObj));
+            el.dispatchEvent(evObj);
         }
 
     }
