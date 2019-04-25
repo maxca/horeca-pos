@@ -145,7 +145,10 @@
     </div>
 </div>
 </div>
-<a id="oauth" href="">Link</a>
+<div class="content">
+    <a id="oauth" href="">Link</a>
+    <a href="intent://test#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;">prints</a>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -161,104 +164,104 @@
 
 <script type="text/javascript">
     window.location.href = "quickprinter://test";
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
 
-        var pusher = new Pusher('04ac9fe180086d993988', {
-            cluster: 'ap1',
-            forceTLS: true
+    var pusher = new Pusher('04ac9fe180086d993988', {
+        cluster: 'ap1',
+        forceTLS: true
+    });
+
+    var channel = pusher.subscribe('horeca-pos');
+
+    channel.bind('order-trigger', function (data) {
+        var date = new Date();
+        var timestamp = date.getTime();
+        window.open('intent://test#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;')
+        //alert(JSON.stringify(data));
+        // window.location.href = "http://printer.siam-dev.info/clients/printer.php";
+        $("#btn-click").trigger('click');
+        window.open("http://printer.siam-dev.info/server/printer.php?time=" + timestamp,
+            "DescriptiveWindowName",
+            "resizable,scrollbars,status"
+        );
+
+        // eventFire(document.getElementById('btn-click'), 'click');
+        // var someLink = document.getElementById('btn-click');
+        // simulateClick(someLink);
+
+    });
+
+    /**
+     * Simulate a click event.
+     * @public
+     * @param {Element} elem  the element to simulate a click on
+     */
+    var simulateClick = function (elem) {
+        alert('auto click');
+        // Create our event (with options)
+        var evt = new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+            view: window
         });
+        // If cancelled, don't dispatch our event
+        var canceled = !elem.dispatchEvent(evt);
 
-        var channel = pusher.subscribe('horeca-pos');
-
-        channel.bind('order-trigger', function (data) {
-            var date = new Date();
-            var timestamp = date.getTime();
-            window.open('intent://test#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;')
-            //alert(JSON.stringify(data));
-            // window.location.href = "http://printer.siam-dev.info/clients/printer.php";
-            $("#btn-click").trigger('click');
-            window.open("http://printer.siam-dev.info/server/printer.php?time=" + timestamp,
-                "DescriptiveWindowName",
-                "resizable,scrollbars,status"
-            );
-
-            // eventFire(document.getElementById('btn-click'), 'click');
-            // var someLink = document.getElementById('btn-click');
-            // simulateClick(someLink);
-
-        });
-
-        /**
-         * Simulate a click event.
-         * @public
-         * @param {Element} elem  the element to simulate a click on
-         */
-        var simulateClick = function (elem) {
-            alert('auto click');
-            // Create our event (with options)
-            var evt = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-                view: window
-            });
-            // If cancelled, don't dispatch our event
-            var canceled = !elem.dispatchEvent(evt);
-
-        };
+    };
 
 
-        function eventFire(el, etype){
-            if (el.fireEvent) {
-                alert('if')
-                el.fireEvent('on' + etype);
-            } else {
-                alert('else')
-                var evObj = document.createEvent('Events');
-                evObj.initEvent(etype, true, false);
-                alert(el.dispatchEvent(evObj));
-            }
-
+    function eventFire(el, etype) {
+        if (el.fireEvent) {
+            alert('if')
+            el.fireEvent('on' + etype);
+        } else {
+            alert('else')
+            var evObj = document.createEvent('Events');
+            evObj.initEvent(etype, true, false);
+            alert(el.dispatchEvent(evObj));
         }
 
-        var commandsToPrint =
-            "<LOGO>" +
-            "<BIG><BOLD><CENTER> Horeca POS <BR>" +
-            "<CENTER>Egg digital company<BR>" +
-            "<CENTER>0996217524<BR>" +
-            "<BOLD>Quantity     Product    Subtotal<BR>" +
-            "<LEFT>2            ชากาแฟ        5 THB<BR>" +
-            "<RIGHT><BOLD>Total $ 5.00<BR>" +
-            "<BR>" +
-            "<CUT>" +
-            "<DRAWER>" // OPEN THE CASH DRAWER
-        ;
+    }
 
-        function sendToQuickPrinter() {
-            var text = "test printer<br><big>Big title<br><cut>";
-            var textEncoded = encodeURI(commandsToPrint);
-            window.location.href = "quickprinter://" + text;
-            window.location.href = "quickprinter://" + textEncoded;
-        }
+    var commandsToPrint =
+        "<LOGO>" +
+        "<BIG><BOLD><CENTER> Horeca POS <BR>" +
+        "<CENTER>Egg digital company<BR>" +
+        "<CENTER>0996217524<BR>" +
+        "<BOLD>Quantity     Product    Subtotal<BR>" +
+        "<LEFT>2            ชากาแฟ        5 THB<BR>" +
+        "<RIGHT><BOLD>Total $ 5.00<BR>" +
+        "<BR>" +
+        "<CUT>" +
+        "<DRAWER>" // OPEN THE CASH DRAWER
+    ;
 
-        //if you are using latest version of chrome browser I recommend to use:
-        function sendToQuickPrinterChrome() {
+    function sendToQuickPrinter() {
+        var text = "test printer<br><big>Big title<br><cut>";
+        var textEncoded = encodeURI(commandsToPrint);
+        window.location.href = "quickprinter://" + text;
+        window.location.href = "quickprinter://" + textEncoded;
+    }
 
-            var text = "test printer<br><big>Big title<br><cut>";
-            var textEncoded = encodeURI(commandsToPrint);
-            window.location.href = "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
+    //if you are using latest version of chrome browser I recommend to use:
+    function sendToQuickPrinterChrome() {
 
-            return "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
+        var text = "test printer<br><big>Big title<br><cut>";
+        var textEncoded = encodeURI(commandsToPrint);
+        window.location.href = "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
+
+        return "intent://" + textEncoded + "#Intent;scheme=quickprinter;package=pe.diegoveloper.printerserverapp;end;";
 
 
-        }
+    }
 
 
-        function printf(contents) {
-            $('#oauth').attr('href', contents);
-            $( location ).attr("href", contents);
+    function printf(contents) {
+        $('#oauth').attr('href', contents);
+        $(location).attr("href", contents);
 
-        }
+    }
 
 
 </script>
