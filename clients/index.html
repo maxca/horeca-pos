@@ -168,6 +168,8 @@
         console.log('cok')
         $("#click-print").click();
     })
+
+    eventFire(document.getElementById('click-print'), 'click');
     window.location.href = "quickprinter://test";
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
