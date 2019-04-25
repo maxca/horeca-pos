@@ -169,9 +169,9 @@
             forceTLS: true
         });
 
-        var channel = pusher.subscribe('my-channel');
+        var channel = pusher.subscribe('horeca-pos');
 
-        channel.bind('my-event', function (data) {
+        channel.bind('order-trigger', function (data) {
             var date = new Date();
             var timestamp = date.getTime();
             //alert(JSON.stringify(data));

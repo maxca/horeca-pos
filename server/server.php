@@ -13,4 +13,4 @@ $pusher  = new Pusher\Pusher(
 );
 
 $data['message'] = 'hello world';
-$pusher->trigger('my-channel', 'my-event', $data);
+$pusher->trigger('horeca-pos', 'order-trigger', $data);
